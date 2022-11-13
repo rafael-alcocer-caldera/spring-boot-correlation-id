@@ -26,7 +26,9 @@ public class ThingController {
 ```
 
 With this code using lombok annotation **@RequiredArgsConstructor**.
-will create constructor receiving non-static final fields.
+
+Will create constructor receiving non-static final fields.
+
 The annotation will not generate a constructor for the following fields:
 - Initialized non-null fields
 - Initialized final fields
@@ -58,8 +60,8 @@ Response:
 ```
 
 
-ECIPSE CONSOLE:
----------------
+ECLIPSE CONSOLE:
+----------------
 ```
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
