@@ -1,0 +1,9 @@
+server:
+  port : 8050
+  # To include message in the response
+  error:
+    include-message: always
+
+logging:
+  pattern: 
+    console: "%-4relative [%thread] %-5level %logger{35} %X{RacCorrelationId} --- %msg %n"
