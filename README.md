@@ -8,6 +8,53 @@ The project is a Spring Boot Application.
 
 I wanted to do a Spring Boot Application, that shows how to implement the correlation id to track the request.
 
+## Pre Requirements
+
+You only need to add this to the application.yml:
+
+```
+logging:
+  pattern: 
+    console: "%-4relative [%thread] %-5level %logger{35} %X{RacCorrelationId} --- %msg %n"
+```
+
+Or this if you have application.properties:
+
+```
+logging.pattern.console=%-4relative [%thread] %-5level %logger{35} %X{RacCorrelationId} --- %msg %n
+```
+
+You also need to add the filter:
+
+```java
+@Component
+public class CorrelationIdFilter extends OncePerRequestFilter {
+
+    private static final String CORRELATION_ID = "RacCorrelationId";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CorrelationIdFilter.class);
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws IOException, ServletException {
+        String correlationId = request.getHeader(CORRELATION_ID);
+        LOGGER.info("request.getHeader(" + CORRELATION_ID + "): " + correlationId);
+
+        if (StringUtils.isBlank(correlationId)) {
+            correlationId = UUID.randomUUID().toString();
+            LOGGER.info("correlationId created: " + correlationId);
+        }
+
+        try {
+            MDC.put(CORRELATION_ID, correlationId);
+            filterChain.doFilter(request, response);
+        } finally {
+            LOGGER.info("Removing correlationId: " + MDC.get(CORRELATION_ID));
+            MDC.remove(CORRELATION_ID);
+        }
+    }
+}
+```
 
 ## Notes
 
