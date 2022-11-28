@@ -18,11 +18,6 @@ package rafael.alcocer.caldera.filter;
 import java.io.IOException;
 import java.util.UUID;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +33,9 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(CorrelationIdFilter.class);
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws IOException, ServletException {
+    protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response, jakarta.servlet.FilterChain filterChain)
+            throws jakarta.servlet.ServletException, IOException {
         String correlationId = request.getHeader(CORRELATION_ID);
         LOGGER.info("request.getHeader(" + CORRELATION_ID + "): " + correlationId);
 
