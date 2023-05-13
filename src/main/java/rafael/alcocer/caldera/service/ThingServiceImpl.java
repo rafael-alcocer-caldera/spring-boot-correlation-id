@@ -19,20 +19,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import rafael.alcocer.caldera.data.ThingData;
 import rafael.alcocer.caldera.model.Thing;
 
+@RequiredArgsConstructor
 @Service
 public class ThingServiceImpl implements ThingService {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ThingServiceImpl.class);
 
     private final ThingData thingData;
-    
-    public ThingServiceImpl(ThingData thingData) {
-        this.thingData = thingData;
-    }
-    
+
     @Override
     public Thing generateThingData() {
         LOGGER.info("ThingServiceImpl... generateThingData()... ");
