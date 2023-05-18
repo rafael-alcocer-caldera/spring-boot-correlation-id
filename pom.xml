@@ -5,17 +5,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring Boot Correlation Id</name>
 	<description>Spring Boot Correlation Id</description>
-
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.0</version>
 	</parent>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,20 +28,11 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<plugins>
 			<plugin>

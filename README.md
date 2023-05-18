@@ -70,6 +70,13 @@ public class ThingController {
     public ThingController(ThingServiceImpl thingService) {
         this.thingService = thingService;
     }
+    
+    @RequestMapping("/thing")
+    public Thing showThing() {
+        LOGGER.info("ThingController... showThing()... ");
+        return thingService.generateThingData();
+    }
+}
 ```
 
 With this code using lombok annotation **@RequiredArgsConstructor**.
@@ -86,8 +93,17 @@ The annotation will not generate a constructor for the following fields:
 @RequiredArgsConstructor
 @RestController
 public class ThingController {
-    
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThingController.class);
+
     private final ThingService thingService;
+
+    @RequestMapping("/thing")
+    public Thing showThing() {
+        LOGGER.info("ThingController... showThing()... ");
+        return thingService.generateThingData();
+    }
+}
 ```
 
 USING POSTMAN:
